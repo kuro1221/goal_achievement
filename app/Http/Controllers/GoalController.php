@@ -6,10 +6,44 @@ use Illuminate\Http\Request;
 use App\Models\Goal;
 use App\Http\Requests\GoalRequest;
 use Exception;
+use OpenApi\Annotations as OA;
 
 class GoalController extends Controller
 {
     /**
+     * @OA\Post(
+     *   path="/api/goal",
+     *   operationId="createGoal",
+     *   tags={"目標"},
+     *   summary="ユーザーの目標を登録します",
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(ref="#/components/schemas/GoalRequest")
+     *   ),
+     *   @OA\Response(
+     *     response="200",
+     *     description="目標登録成功時のレスポンス",
+     *     @OA\JsonContent(
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         example="目標を登録しました"
+     *       ),
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response="500",
+     *     description="目標登録失敗時のレスポンス",
+     *     @OA\JsonContent(
+     *       @OA\Property(
+     *         property="message",
+     *         type="string",
+     *         example="エラー発生しました"
+     *       ),
+     *     )
+     *   )   
+     * )
+     *
      * 目標を登録
      *
      * @param GoalRequest $request

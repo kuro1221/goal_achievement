@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/goal": {
+            "post": {
+                "tags": [
+                    "目標"
+                ],
+                "summary": "ユーザーの目標を登録します",
+                "operationId": "createGoal",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GoalRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "目標登録成功時のレスポンス",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "目標を登録しました"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "目標登録失敗時のレスポンス",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "エラー発生しました"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GoalRequest": {
+                "title": "GoalRequest",
+                "properties": {
+                    "title": {
+                        "description": "目標のタイトル",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "ランニング"
+                    },
+                    "description": {
+                        "description": "目標の詳細",
+                        "type": "string",
+                        "example": "サブ4を目指す",
+                        "nullable": true
+                    },
+                    "start_date": {
+                        "description": "目標の開始日",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2021-01-01",
+                        "nullable": true
+                    },
+                    "due_date": {
+                        "description": "目標の期限日",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2021-12-31",
+                        "nullable": true
+                    },
+                    "comment": {
+                        "description": "目標のコメント",
+                        "type": "string",
+                        "example": "頑張る",
+                        "nullable": true
+                    },
+                    "user_id": {
+                        "description": "ユーザーID",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
