@@ -20,7 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/goal', [GoalController::class, 'createGoal']);
 Route::get('/goalList', [GoalController::class, 'getGoalList']);
-
+// API接続テスト用
+Route::get('/goal/test', [GoalController::class, 'test']);
 
 Route::post('/achievement', [AchievementController::class, 'recordAchievement']);
 Route::get('/achievementList', [AchievementController::class, 'getAchievementList']);
