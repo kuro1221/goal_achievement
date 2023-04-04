@@ -92,4 +92,11 @@ class GoalController extends Controller
             'data' => $goal_list
         ], 200);
     }
+
+    public function test()
+    {
+        return response()->json([
+            'message' => 'テスト成功',
+        ], 200);
+    }
 }
