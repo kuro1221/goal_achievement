@@ -44,6 +44,8 @@ class GoalController extends Controller
      *   )   
      * )
      *
+     * *
+     * 
      * 目標を登録
      *
      * @param GoalRequest $request
@@ -71,9 +73,46 @@ class GoalController extends Controller
     }
 
     /**
-     * 全員の目標を取得
+     * @OA\Get(
+     *     path="/api/goalList",
+     *     operationId="getGoalList",
+     *     tags={"目標"},
+     *     summary="全員の目標を取得します",
+     *     @OA\Response(
+     *         response="200",
+     *         description="目標一覧取得成功時のレスポンス",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="目標一覧を取得しました"
+     *             ),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(ref="#/components/schemas/Goal")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="500",
+     *         description="目標一覧取得失敗時のレスポンス",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="エラー発生しました"
+     *             )
+     *         )
+     *     ),
+     * )
      *
-     * @return void
+     * **
+     * 
+     * 全員の目標を取得
+     * 
      */
     public function getGoalList()
     {
