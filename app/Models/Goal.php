@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use OpenApi\Annotations as OA;
 
 
@@ -109,5 +110,15 @@ class Goal extends Model
     public function achievements()
     {
         return $this->hasMany(Achievement::class);
+    }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

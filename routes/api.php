@@ -24,4 +24,5 @@ Route::get('/goalList', [GoalController::class, 'getGoalList']);
 Route::get('/goal/test', [GoalController::class, 'test']);
 
 Route::post('/achievement', [AchievementController::class, 'recordAchievement']);
+Route::get('/achievement/{id}', [AchievementController::class, 'getAchievement']);
 Route::get('/achievementList', [AchievementController::class, 'getAchievementList']);

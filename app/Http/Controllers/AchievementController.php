@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AchievementRequest;
 use App\Models\Achievement;
+use App\Models\User;
 use Exception;
 use OpenApi\Annotations as OA;
+use Illuminate\Support\Facades\Log;
 
 class AchievementController extends Controller
 {
@@ -57,6 +59,25 @@ class AchievementController extends Controller
 
         return response()->json([
             'message' => '達成状況を登録しました',
+            'data' => $achievement
+        ], 200);
+    }
+
+    public function getAchievement(int $user_id)
+    {
+        try {
+            $achievement = User::with('goals.achievements')
+                ->where('users.id', $user_id)
+                ->get();
+        } catch (Exception $e) {
+            Log::error('エラー発生（目標達成状況取得時）: ' . $e->getMessage());
+            return response()->json([
+                'message' => 'エラー発生しました',
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => '目標達成状況を取得しました',
             'data' => $achievement
         ], 200);
     }
